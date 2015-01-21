@@ -1,0 +1,16 @@
+{
+  "name": "widget_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "widget.js",
+  "dependencies": {
+    "gulp": "^3.8.10",
+    "gulp-sass": "^1.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": ""
+}
