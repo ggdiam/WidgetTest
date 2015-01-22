@@ -16,7 +16,7 @@ var namespaceWidget = function () {
 
         //контейнер
         self.cont = document.getElementById('namespace-widget-cont');
-        console.log(self.cont);
+        //console.log(self.cont);
         //парент контейнера
         self.contParent = self.cont.parentNode;
 
@@ -30,8 +30,8 @@ var namespaceWidget = function () {
         }
 
         var widgetEl = document.getElementById('namespace-widget-id');
-        widgetEl.innerHTML = '<div>this is SPARTA!!!!</div>';
-        console.log(widgetEl);
+        widgetEl.innerHTML = '<div>This is SPARTA!!!!</div>';
+        //console.log(widgetEl);
 
         //self.cont.style.width = self.maxWidth * self.cols + self.margin * (self.cols - 1) + 'px';
 
@@ -79,7 +79,7 @@ var namespaceWidget = function () {
     //считает макс ширину колонки исходя из заданной максимальной ширины
     self.getMaxColWidthFromParentWidth = function (parentWidth, n) {
         var res = parentWidth - self.margin * (n - 1);
-        res = Math.floor(res / n) - 2;
+        res = Math.floor(res / n);
         if (res > self.maxWidth){
             res = self.maxWidth;
         }
@@ -106,8 +106,8 @@ var namespaceWidget = function () {
         }
 
         console.log(actual);
-        var contWidth = actual.width * actual.cols + self.margin * (n - 1);
-        var maxContWidth = self.getNumColsMaxWidth(self.cols);// self.maxWidth * self.cols + self.margin * (self.cols - 1);
+        var contWidth = actual.width * actual.cols + self.margin * (n - 1) + 1;//плюс 1 px
+        var maxContWidth = self.getNumColsMaxWidth(self.cols);
         if (contWidth > maxContWidth) {
             contWidth = maxContWidth;
         }
@@ -122,28 +122,31 @@ var namespaceWidget = function () {
             img.style.height = actual.width + 'px';
         }
 
-        var items = document.getElementsByClassName('namespace-item');
-        var maxItemHeigth = 0;
 
-        //reset minHeight
+        var items = document.getElementsByClassName('namespace-item');
+
+        //сначала проставляем ширину блоков, чтобы текст растянул блоки на высоту
         for(var i=0; i< items.length; i++){
             var item = items[i];
+            item.style.width = actual.width + 'px';
             item.style.minHeight = '1px';
         }
 
-        //calc maxItemHeigth
+        var maxItemHeigth = 0;
+        //вычисляем максимальную высоту блоков
         for(var i=0; i< items.length; i++) {
             var item = items[i];
-            if (item.offsetHeight > maxItemHeigth){
-                maxItemHeigth = item.offsetHeight;
+            var itemHeight = item.offsetHeight;
+            //console.log('item height:', itemHeight, 'maxItemHeigth:', maxItemHeigth);
+            if (itemHeight > maxItemHeigth){
+                maxItemHeigth = itemHeight;
             }
         }
         console.log('maxItemHeigth:', maxItemHeigth);
 
-        //set width and minHeight
+        //проставляем высоту блоков
         for(var i=0; i< items.length; i++){
             var item = items[i];
-            item.style.width = actual.width + 'px';
             item.style.minHeight = maxItemHeigth + 'px';
         }
     };
