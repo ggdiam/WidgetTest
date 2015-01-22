@@ -1,5 +1,73 @@
 
-.namespace-widget {
+//vars
+$namespace: "namespace";
+$col-padding: 10px;
+
+.#{$namespace}-widget {
   background-color: red;
   color: white;
+}
+
+.#{$namespace}-clearFix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.#{$namespace}-row{
+  @extend .clearFix;
+  position: relative;
+//  margin-right: -$col-padding;
+//  margin-left: -$col-padding;
+}
+
+@for $key from 1 through 12 {
+  $cols: 12/$key;
+  $width: 100% / $cols;
+
+  .#{$namespace}-col-xs-#{$key} {
+    position: relative;
+    float: left;
+    min-width: 150px;
+    max-width: 250px;
+    width: $width;
+//    height: 150px;
+    min-height: 1px;
+    box-sizing: border-box;
+    margin: $col-padding $col-padding $col-padding*2 $col-padding;
+//    background-color: #00ffef;
+  }
+}
+
+.#{$namespace}-widget-container {
+  display: table;
+  margin: 0 auto;
+//  background-color: #00e8d8;
+}
+
+.#{$namespace}-inner-widget-container {
+  margin-right: -$col-padding;
+  margin-left: -$col-padding;
+}
+
+.#{$namespace}-widget-caption {
+  margin: 10px $col-padding;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.#{$namespace}-item {
+
+}
+
+.#{$namespace}-item-img {
+  width: 100%;
+  height: 100px;
+  background-color: #008000;
+}
+
+.#{$namespace}-item-text {
+  margin-top: 20px;
 }

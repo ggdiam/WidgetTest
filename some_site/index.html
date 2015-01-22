@@ -4,13 +4,53 @@
 </head>
 <body>
 <div class="content">
-    <h1>bla bla bla</h1>
+    <h1>bla bla bla asd</h1>
 
     <div id="namespace-widget-id" class="namespace-widget"></div>
-    <link rel="stylesheet" href="//localhost:8081/css/widget.css">
-    <script type="text/javascript" src="//localhost:8081/widget.js"></script>
+    <link rel="stylesheet" href="widget.css">
+    <script type="text/javascript" src="widget.js"></script>
+
+    <!--<div id="namespace-widget-cont" class="namespace-widget-container">-->
+        <!--<div class="namespace-col-xs-4">1</div>-->
+        <!--<div class="namespace-col-xs-4">2</div>-->
+        <!--<div class="namespace-col-xs-4">3</div>-->
+        <!--<div class="namespace-col-xs-4">4</div>-->
+        <!--<div class="namespace-col-xs-4">5</div>-->
+        <!--<div class="namespace-col-xs-4">6</div>-->
+    <!--</div>-->
+
+    <div id="namespace-widget-cont" class="namespace-widget-container">
+        <div class="namespace-inner-widget-container">
+            <div class="namespace-widget-caption">Заголовок виджета</div>
+            <div class="namespace-item namespace-col-xs-3">
+                <div class="namespace-item-img"></div>
+                <div class="namespace-item-text">В канаде сошел с рельсов и загорелся поезд с ядовитыми веществами</div>
+            </div>
+            <div class="namespace-item namespace-col-xs-3">
+                <div class="namespace-item-img"></div>
+                <div class="namespace-item-text">Глава горздрава Москвы подал в отставку из-за вида на жительство в Швейцарии</div>
+            </div>
+            <div class="namespace-item namespace-col-xs-3">
+                <div class="namespace-item-img"></div>
+                <div class="namespace-item-text">«Известия»: депутаты предлагают призывать в армию раз в год</div>
+            </div>
+            <div class="namespace-item namespace-col-xs-3">
+                <div class="namespace-item-img"></div>
+                <div class="namespace-item-text">Житель Самары в ходе уборки в комнате квартиранта обнаружил 8 кг «спайса»</div>
+            </div>
+            <div class="namespace-item namespace-col-xs-3">
+                <div class="namespace-item-img"></div>
+                <div class="namespace-item-text">Россия: Украина сделала все, чтобы помешать расследованию катастрофы Boeing</div>
+            </div>
+            <div class="namespace-item namespace-col-xs-3">
+                <div class="namespace-item-img"></div>
+                <div class="namespace-item-text">«РГ»: Совфед собирается запретить «спайсы»</div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
-        namespace_widget.init({cols: 3, rows: 2});
+        namespaceWidget.init({cols: 4, rows: 2});
     </script>
 </div>
 </body>
