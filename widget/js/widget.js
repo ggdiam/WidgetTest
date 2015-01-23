@@ -58,8 +58,8 @@ var namespaceWidget = function () {
             //создаем внутренний контейнер
             var innerCont = self.appendElement(self.cont, 'div', self.ns + '-inner-widget-container');
             ///создаем заголовок
-            var widgetCaption = self.appendElement(innerCont, 'div', self.ns + '-widget-caption');
-            widgetCaption.innerHTML = 'Заголовок виджета';
+            //var widgetCaption = self.appendElement(innerCont, 'div', self.ns + '-widget-caption');
+            //widgetCaption.innerHTML = 'Заголовок виджета';
 
             //нужно элементов
             var count = self.cols * self.rows;
@@ -78,13 +78,11 @@ var namespaceWidget = function () {
             self.cont.style.visibility = 'hidden';
             //задаем ширину контейнера
             self.setContWidth();
-            self.cont.style.visibility = '';
 
-            //setTimeout(function () {
-            //    self.cont.style.visibility = 'hidden';
-            //    self.setContWidth();
-            //    self.cont.style.visibility = '';
-            //}, 100);
+            setTimeout(function () {
+                self.setContWidth();
+                self.cont.style.visibility = '';
+            }, 300);
 
             console.log('namespaceWidget создан,', self.cols, 'колонок и', self.rows, 'столбцов');
         }
@@ -96,6 +94,7 @@ var namespaceWidget = function () {
     self.getData = function () {
         //ToDo: тут идет получение данных из API
         self.data = [
+            //'В канаде сошел с рельсов и загорелся поезд с ядовитыми веществами </br></br>В канаде сошел с рельсов и загорелся поезд с ядовитыми веществами',
             'В канаде сошел с рельсов и загорелся поезд с ядовитыми веществами',
             'Глава горздрава Москвы подал в отставку из-за вида на жительство в Швейцарии',
             '«Известия»: депутаты предлагают призывать в армию раз в год',
@@ -124,7 +123,7 @@ var namespaceWidget = function () {
 
     //установка ширины контейнера
     self.setContWidth = function () {
-        var parentWidth = self.contParent.offsetWidth;
+        var parentWidth = self.contParent.offsetWidth - self.margin * 2;
         //console.log('parentWidth:', parentWidth);
 
         var actual = {};//ширина колонки, кол-во колонок
@@ -150,39 +149,38 @@ var namespaceWidget = function () {
         self.cont.style.width = contWidth + 'px';
         //console.log('contWidth:', contWidth, ' maxContWidth:', maxContWidth);
 
-        //задание размера элементам
         var imgs = document.getElementsByClassName(self.ns + '-item-img');
-        for(var i=0; i< imgs.length; i++){
-            var img = imgs[i];
-            img.style.width = actual.width + 'px';
-            img.style.height = actual.width + 'px';
-        }
-
-
         var items = document.getElementsByClassName(self.ns + '-item');
+
+        var maxItemHeigth = 0;
 
         //сначала проставляем ширину блоков, чтобы текст растянул блоки на высоту
         for(var i=0; i< items.length; i++){
             var item = items[i];
             item.style.width = actual.width + 'px';
-            item.style.minHeight = '1px';
+            //item.style.minHeight = '1px';
         }
 
-        var maxItemHeigth = 0;
-        //вычисляем максимальную высоту блоков
-        for(var i=0; i< items.length; i++) {
+        //задание размера элементам
+        for(var i=0; i< imgs.length; i++){
+            var img = imgs[i];
+            img.style.height = actual.width + 'px';
+
             var item = items[i];
-            var itemHeight = self.getCountedHeigth(item);// item.offsetHeight;
-            console.log('item height:', itemHeight, 'maxItemHeigth:', maxItemHeigth);
+            //item.style.minHeight = '1px';
+
+
+            var itemHeight = item.offsetHeight;
+
+            //var itemHeight = self.getCountedHeigth(item);
+            //console.log('item height:', itemHeight, 'maxItemHeigth:', maxItemHeigth);
+            //console.log(item.clientHeight, item.offsetHeight, item.scrollHeight);
+            //console.log(item.style.marginTop, item.style.marginBottom);
+
             if (itemHeight > maxItemHeigth){
                 maxItemHeigth = itemHeight;
             }
-        }
-        //console.log('maxItemHeigth:', maxItemHeigth);
 
-        //проставляем высоту блоков
-        for(var i=0; i< items.length; i++){
-            var item = items[i];
             item.style.minHeight = maxItemHeigth + 'px';
         }
     };
@@ -264,6 +262,7 @@ var namespaceWidget = function () {
             elmHeight = document.defaultView.getComputedStyle(elm, '').getPropertyValue('height');
             elmMargin = parseInt(document.defaultView.getComputedStyle(elm, '').getPropertyValue('margin-top')) + parseInt(document.defaultView.getComputedStyle(elm, '').getPropertyValue('margin-bottom')) + "px";
         }
+        console.log('elmHeight:', elmHeight, 'elmMargin:', elmMargin);
         return parseInt((elmHeight + elmMargin).replace('.px', ''), 10);
     }
 
