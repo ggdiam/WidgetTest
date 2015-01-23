@@ -7,6 +7,9 @@
 <script type="text/javascript" data-cols="3" data-rows="2" src="http://yoursiteadress.com/widget.js"></script>
 ```
 
+```data-cols="3"``` - задаем кол-во колонок<br/>
+```data-rows="2"``` - кол-во строк
+
 ## Пример виджета встроенного в адаптивную верстку:
 http://ggdiam-test-site.azurewebsites.net/
 
