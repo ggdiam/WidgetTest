@@ -1,6 +1,6 @@
 # WidgetTest
 
-[Тестовое задание.](https://github.com/ggdiam/WidgetTest/blob/master/spec/README.md)
+### [Тестовое задание.](https://github.com/ggdiam/WidgetTest/blob/master/spec/README.md)
 
 Собранный и минифицированный виджет в папке build.
 
